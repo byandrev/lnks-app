@@ -1,11 +1,12 @@
 import { Box, Flex, Image, Link, Spacer } from '@chakra-ui/react'
-import { useScrapper, ReactTinyLink } from 'react-tiny-link'
+// import { useScrapper, ReactTinyLink } from 'react-tiny-link'
 import Tag from './Tag'
 
 function LinkElement({ url, tags }) {
-  const [result, loading, error] = useScrapper({
-    url,
-  })
+  // const [result, loading, error] = useScrapper({
+  //   url,
+  // })
+  const loading = true
 
   return (
     <Box border="1px" borderColor="gray.200" borderRadius={6}>
