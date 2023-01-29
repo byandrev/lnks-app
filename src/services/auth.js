@@ -21,7 +21,11 @@ async function login(email, password) {
     },
     body: `username=${email}&password=${password}`,
   })
-  return await response.json()
+  const data = await response.json()
+  return {
+    ...data,
+    code: response.status,
+  }
 }
 
 export { getUser, login }

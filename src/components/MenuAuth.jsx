@@ -1,22 +1,20 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react'
 import useUser from '../hooks/useUser'
 import { login as loginService } from '../services/auth'
+import { Link } from 'wouter'
 
 function MenuAuth() {
-  const { user, login, logout } = useUser()
-
-  const handleLogin = async () => {
-    const token = await loginService('byandrev@gmail.com', '123')
-    login(token.access_token)
-  }
+  const { user, logout } = useUser()
 
   return (
     <Flex>
       {!user ? (
         <ButtonGroup gap={2}>
-          <Button colorScheme="telegram">Sign Up</Button>
-          <Button colorScheme="telegram" onClick={handleLogin}>
-            Login
+          <Button colorScheme="purple">
+            <Link to="/signup">Sign Up</Link>
+          </Button>
+          <Button colorScheme="purple">
+            <Link to="/login">Login</Link>
           </Button>
         </ButtonGroup>
       ) : (
