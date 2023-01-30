@@ -1,10 +1,9 @@
-import React from 'react'
 import { Flex } from '@chakra-ui/react'
 
-import LoginForm from '../components/LoginForm'
-import Header from '../components/Header'
+import Header from '../../components/Header'
+import SignUpForm from './components/SignUpForm'
 
-function Login() {
+function SignUp() {
   return (
     <>
       <Flex
@@ -15,10 +14,10 @@ function Login() {
         alignItems="center"
       >
         <Header />
-        <LoginForm />
+        <SignUpForm />
       </Flex>
     </>
   )
 }
 
-export default Login
+export default SignUp

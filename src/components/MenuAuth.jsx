@@ -1,7 +1,6 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react'
-import useUser from '../hooks/useUser'
-import { login as loginService } from '../services/auth'
 import { Link } from 'wouter'
+import useUser from '../hooks/useUser'
 
 function MenuAuth() {
   const { user, logout } = useUser()

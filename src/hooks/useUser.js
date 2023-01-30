@@ -6,13 +6,21 @@ function useUser() {
   const { user, setUser, token, setToken } = useContext(UserContext)
 
   useEffect(() => {
+    let isActive = true
+
     const tokenInLs = localStorage.getItem('token')
     if (tokenInLs !== null) {
-      setToken(tokenInLs)
+      if (isActive) setToken(tokenInLs)
+    }
+
+    return () => {
+      isActive = false
     }
   }, [])
 
   useEffect(() => {
+    let isActive = true
+
     async function fetchUser() {
       const userResponse = await getUser(token)
 
@@ -26,7 +34,12 @@ function useUser() {
       }
     }
 
-    fetchUser()
+    if (isActive && token !== null && token !== 'null') fetchUser()
+    else setUser(null)
+
+    return () => {
+      isActive = false
+    }
   }, [token])
 
   const login = (tokenParam) => {

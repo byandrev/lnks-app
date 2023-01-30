@@ -28,4 +28,25 @@ async function login(email, password) {
   }
 }
 
-export { getUser, login }
+async function signup(email, username, password) {
+  const user = {
+    email,
+    username,
+    password,
+  }
+
+  const response = await fetch(`${API_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+  const data = await response.json()
+  return {
+    ...data,
+    code: response.status,
+  }
+}
+
+export { getUser, login, signup }
