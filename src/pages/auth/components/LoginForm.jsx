@@ -2,8 +2,8 @@ import { Box, Button, Spacer, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Link as LinkRouter } from 'wouter'
 
-import InputForm from './InputForm'
 import useLogin from '../hooks/useLogin'
+import InputForm from './InputForm'
 
 function LoginForm() {
   const [email, setEmail] = useState('')

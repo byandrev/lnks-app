@@ -1,9 +1,16 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react'
 import { Link } from 'wouter'
 import useUser from '../hooks/useUser'
+import useAlert from '../hooks/useAlert'
 
 function MenuAuth() {
   const { user, logout } = useUser()
+  const alert = useAlert()
+
+  const handleLogout = () => {
+    logout()
+    alert.show('Logout success!', 'info')
+  }
 
   return (
     <Flex>
@@ -19,7 +26,7 @@ function MenuAuth() {
       ) : (
         <>
           <p>Hello {user.username}</p>
-          <Button colorScheme="red" onClick={logout}>
+          <Button colorScheme="red" onClick={handleLogout}>
             Logout
           </Button>
         </>
