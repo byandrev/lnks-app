@@ -2,9 +2,10 @@ import { Button, ButtonGroup, Flex } from '@chakra-ui/react'
 import { Link } from 'wouter'
 import useUser from '../hooks/useUser'
 import useAlert from '../hooks/useAlert'
+import LoginIcon from './LoginIcon'
 
 function MenuAuth() {
-  const { user, logout } = useUser()
+  const { user, isLogged, logout } = useUser()
   const alert = useAlert()
 
   const handleLogout = () => {
@@ -14,7 +15,7 @@ function MenuAuth() {
 
   return (
     <Flex>
-      {!user ? (
+      {!isLogged ? (
         <ButtonGroup gap={2}>
           <Button colorScheme="purple">
             <Link to="/signup">Sign Up</Link>
@@ -24,12 +25,7 @@ function MenuAuth() {
           </Button>
         </ButtonGroup>
       ) : (
-        <>
-          <p>Hello {user.username}</p>
-          <Button colorScheme="red" onClick={handleLogout}>
-            Logout
-          </Button>
-        </>
+        <LoginIcon handleLogout={handleLogout} />
       )}
     </Flex>
   )

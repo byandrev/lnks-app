@@ -54,7 +54,7 @@ function useUser() {
 
   return {
     user,
-    token,
+    isLogged: token !== null && token !== 'null',
     login,
     logout,
   }
