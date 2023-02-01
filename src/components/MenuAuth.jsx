@@ -1,31 +1,31 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react'
+import { Link } from 'wouter'
 import useUser from '../hooks/useUser'
-import { login as loginService } from '../services/auth'
+import useAlert from '../hooks/useAlert'
+import LoginIcon from './LoginIcon'
 
 function MenuAuth() {
-  const { user, login, logout } = useUser()
+  const { user, isLogged, logout } = useUser()
+  const alert = useAlert()
 
-  const handleLogin = async () => {
-    const token = await loginService('byandrev@gmail.com', '123')
-    login(token.access_token)
+  const handleLogout = () => {
+    logout()
+    alert.show('Logout success!', 'info')
   }
 
   return (
     <Flex>
-      {!user ? (
+      {!isLogged ? (
         <ButtonGroup gap={2}>
-          <Button colorScheme="telegram">Sign Up</Button>
-          <Button colorScheme="telegram" onClick={handleLogin}>
-            Login
+          <Button colorScheme="purple">
+            <Link to="/signup">Sign Up</Link>
+          </Button>
+          <Button colorScheme="purple">
+            <Link to="/login">Login</Link>
           </Button>
         </ButtonGroup>
       ) : (
-        <>
-          <p>Hello {user.username}</p>
-          <Button colorScheme="red" onClick={logout}>
-            Logout
-          </Button>
-        </>
+        <LoginIcon handleLogout={handleLogout} />
       )}
     </Flex>
   )

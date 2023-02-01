@@ -4,12 +4,15 @@ import App from './components/App'
 
 import { ChakraProvider } from '@chakra-ui/react'
 import { UserProvider } from './context/userContext'
+import { AlertProvider } from './context/alertContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <TextReact.StrictMode>
     <ChakraProvider>
       <UserProvider>
-        <App />
+        <AlertProvider>
+          <App />
+        </AlertProvider>
       </UserProvider>
     </ChakraProvider>
   </TextReact.StrictMode>
